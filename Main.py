@@ -14,6 +14,30 @@ class ContactBook:
 
     def add_contact(self, contact):
           self.contacts[contact.name] = contact
+            
+    def search_contact(self, search_contact):
+        current_contact = self.head
+        while current_contact != None:
+            if current_contact == search_contact:
+                return current_contact
+            else:
+                current_contact = current_contact.next
+
+        return None
+    
+    def remove_contact(self, contact):
+        successor = contact.next
+        predecessor = contact.prev
+        if successor != None:
+            successor.prev = predecessor
+        if predecessor != None:
+            predecessor.next = successor
+        if contact is self.head:
+            self.head = successor
+        if contact is self.tail:
+            self.tail = predecessor
+
+            
 Contact_Book = ContactBook()
 while True:
     print("Enter 1 to add a new contact")
